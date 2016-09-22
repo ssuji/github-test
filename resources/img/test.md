@@ -1,2 +1,4 @@
 
-**상품 고도화 마인드맵:** ![](https://github.com/ssuji/github-test/edit/master/resources/img/test.md)
+**상품 고도화 마인드맵** 
+
+![preview](https://raw.githubusercontent.com/ssuji/github-test/master/resources/img/product-mingmap.jpg)
