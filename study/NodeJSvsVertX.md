@@ -13,7 +13,6 @@
  
 --- | Node.js | vert.x
 --- | --- | ---
---- | single thread model </br>고성능 비동기 서버 | single thread model </br>고성능 비동기 서버
 사용가능언어 | javascript,C | javascript,java,python,ruby,groovy,scala등
 내부엔진기반 | google chrome V8 자바스크립트 엔진 <br/> libuv 기반 비동기 처리 IO | Netty기반 NW IO <br/> Hazel Case 기반 클러스터링
 클러스터링 | 1 HW당 여러 node.js 띄우기 가능 <br/> node.js 인스턴스 간 상태 share불가 | 1 HW당 여러 vert.x 띄우기 가능 <br/> node간 상태공유 메시징 가능 (HazelCast기반)
