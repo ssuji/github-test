@@ -1,0 +1,22 @@
+MongoDB
+ 1. mongo-native : JDBC 라이브러리 이용한 DB프로그래밍
+    - mongoDB 공식 제공 node.js용 드라이버
+    - 지원이 확실. mongoDB의 기능 거의 사용 가능
+ 2. mongoose : nodejs용 ODM (Object Data Mapping)
+    - ODM 이용 시, 자바스크립트가 가지고 있는 한계성 중 하나인 모호성 보완
+    - 데이터 입출력을 scheme으로 관리
+    - 데이터 유효성 검증 할 필요가 없어 편리하기는 함/ 반면, 구조체 항상 사용해야하므로 1개의 collection에 다양한 타입의 데이터는 입력 못함
+
+    - mongodb에 json 저장 시 장점: collection에 들어가는 데이터의 형태(스키마) 없기 때문에 자유도가 높음
+    - mongodb에 json 저장 시 단점: RDBMS에 정의된 스키마 개념이 없어 어떤 컬럼이 있는지 코드로는 파악하기 어려움
+      - 이를 보완하는 개념이 mongoose의 스키마 개념
+
+Oracle
+ 1. node-oracledb :
+    - ex. npm install oracledb
+
+
+ - reference
+    - 오라클사가 Github에 만들어놓은 레퍼런스 설치 가이드 : https://github.com/oracle/node-oracledb/blob/master/INSTALL.md
+    - oracle node js developer center : http://www.oracle.com/technetwork/database/database-technologies/scripting-languages/node_js/oracle-node-js-2399407.html
+

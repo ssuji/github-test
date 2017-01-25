@@ -1,0 +1,87 @@
+JavaScript : 주로, 웹 브라우저에서 실행되는 언어.
+    - 웹 브라우저에는 자바스크립트 엔진이 존재.
+    - 이 엔진이 JavaScript 코드를 실행시키는 역할!
+    - 자바스크립트 엔진 예.
+       - 크롬 : V8
+       - 사파리 : WebKit
+       - 파이어폭스 : SpikerMonky
+       - 오페라 : 카라칸
+Node.js ( 참조URL : http://webframeworks.kr/tutorials/nodejs/api-server-by-nodejs-01 )
+       - V8 엔진 + event IO + commonJS
+       - Ryan Dahl이 V8 엔진에 이벤트 IO 프레임웍과 CommonJS 명세를 이용한 모듈을 결합해 Node.js 만듦
+       - 노드는 주로 웹 서버와 같은 네트웍 프로그램을 위해 고안된 환경. BUT, 최근엔 웹 개발 환경의 빌드 툴로도 많이 사용.
+         - 노드 환경에서 개발된 도구 예.
+            - 리액트에서 사용하는 Webpack
+            - 스트림 형식의 빌드툴 Gulp
+            - 설정 방식의 빌드툴 Grunt
+    - v8 엔진 : 구글 자바스크립트 엔진. ECMA-262
+
+Express ( 참조URL : http://expressjs.com/ )
+       - 노드를 만든 패키지의 일종
+       - 웹 프레임 웍. 웹 서버를 만들기 위한 것
+       - 이러한 프레임웍 사용 시, 노드만 사용해 코드를 작성하는 것보다 보다 단시간에 효율적으로 서버개발 가능.
+    - Express는 크게 4가지 부분
+       = Application / Request / Response / Routing
+       1. Application
+       불러온 express 객체엔 하나의 함수가 할당. 그 함수를 실행 시, express 객체 생성.
+        -> express class 이용해, express 객체 만든다 생각!
+        -> 이를 express application
+        -> ex.
+          const express = require('express');
+          const app = express();
+          여기서, app상수에 할당한게 express application. 익스프레스 객체(인스턴스)
+       익스프레스 인스턴스가 하나의 서버 역할.
+         -> 크게 보면, 서버를 세팅하고 구동하는 역할.
+             - 서버 세팅 : 서버에 필요한 기능 추가.
+                           익스프레스에서 서버의 기능은 미들웨어 형태로 존재.
+                           따라서, 이 미들웨어는 익스프레스 인스턴스의 use()함수로 추가 가능.
+                           ex.
+                           서버에서 정적 파일(static file) 호스팅할 땐, 다음과 같이 정적파일설정을 위한 미들웨어 추가 가능.
+                             - app.use(express.static('public'));
+             - 서버 구동
+             ex.
+             app.listen(3000, () => {
+                console.log('Example app listening on port 3000!');
+             });
+             익스프레스 인스턴스의 listen()함수를 이용해, 서버가 클라이언트의 요청 대기 상태로 들어간 것.
+             1번째 파라미터 3000이 대기할 포트번호.
+             2번째 파라미터는 함수. : listen()이 완료되면 실행되는 콜백함수.
+                                      이 콜백함수가 호출되면 서버 구동이 완료되었다고 판단 가능.
+             - 라우팅 기능 : application은 라우팅 기능도 수행.
+                -> 라우팅이란?
+                서버는 나름대로 자원을 관리하는 여러 기능을 가지고 있을 것.
+                if, 클라이언트로부터 어떤 요청이 있을 때, 서버는 가지고 있는 기능 중 이에 적절한 것을 찾아 응답해줘야 함.
+                이때, 이 서버와 클라이언트를 연결해주는 것이 라우팅
+
+                라우팅 : 클라이언트 요청과 서버의 로직을 연결하는 것.
+                ex.
+                app.get('/', (req,res) => {
+                    res.send('Hello World!\n');
+                });
+                app.get()함수 이용해 요청메소드가 GET이라는 것을 설정.
+                1번째 파라미터로 경로 설정
+                2번째 파라미터 콜백함수 : 1번째파라미터-경로에 대한 요청이 들어왔을 때 해당 콜백함수 동작.
+       2. Request
+       익스프레스 요청 객체
+       서버로 요청한 클라이언트의 정보 담고있음.
+         - 하나의 객체 형태.
+         - 키와 함수들로 구성.
+           - req.params : url파라미터 정보를 조회
+           - req.query : 쿼리 문자열을 조회
+           - req.body : 요청 바디를 조회
+       ex. 콜백함수서 전달하는 1번째 파라미터 req
+       3. Response
+       익스프레스 응답 객체
+       요청한 클라이언트에게 응답하기 위한 함수들로 구성된 객체.
+          - res.send()
+          - res.json()
+          - res.status()
+       ex. 콜백함수서 전달하는 2번째 파라미터 res
+       4. Routing
+       어플리케이션 이용해 라우팅 로직을 만들 수도 있지만, 익스프레스에는 별도로 Router() 클래스 제공
+       라우터 클래스 이용시, 라우팅 로직을 좀더 구조적으로 만들 수 있음.
+
+
+node.js는 version4부터는 ES6 지원함!
+  - AWS 중 Lambda라는 서비스도 node.js v4 지원하기 시작
+  - ES6는 순수 자바스크립트 차원에서 제공되는 기능 추가. 비교적 간결한 코드 작성할 수 있는 것이 특징

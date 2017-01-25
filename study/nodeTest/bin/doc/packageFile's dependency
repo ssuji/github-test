@@ -1,0 +1,5 @@
+패키지 파일의 의존성
+ - npm은 프로젝트에 사용하는 노드 패키지 모듈들을 모두 package.json 파일에 기록.
+ - 대부분은 dependencies 속성에 패키지명과 버전정보가 기록
+ - 예를 들어, 서버에 코드를 배포한 뒤, 서버에서 "npm install --production"으로 노드 패키지를 설치하게 되는데
+    이때 노드는 package.json 파일의 dependencies 속성을 참고해 여기에 있는 것들을 설치

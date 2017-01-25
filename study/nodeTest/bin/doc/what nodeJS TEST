@@ -1,0 +1,34 @@
+Node JS TEST TOOL
+* Mocha : Node에서 가장 유명한 테스트 툴
+    - 정확히 얘기하자면, 테스트 코드를 구동시켜주는 테스트 러너(Test Runner)
+    - 모카 또한 노드로 작성된 패키지 중 하나
+    - 따라서, npm 통해 프로젝트에 추가 가능
+    - ex. npm i mocha --save-dev
+        - save-dev 옵션 : 개발 환경을 위한 패키지 의존성을 설정하기 위한 것.
+                          해당 명령문 실행 시, package.json 파일의 devDependecies 속성에 모카 설치 정보가 추가됨
+        - npm은 프로젝트에 사용하는 노드 패키지 모듈들을 모두 package.json 파일에 기록.
+          대부분은 dependencies 속성에 패키지 명과 버전정보 기록
+          서버에 코드 배포 뒤, 서버에서 npm install --production으로 노드 패키지 설치하게되는데,
+          이때, 노드는 package.json 파일의 dependencies 속성을 참고해 여기속성에 있는 것들을 설치.
+          -> 그럼 devDependencies 언제 사용?
+             이건 순전히 개발자 위한 정보
+             코드를 서버에 배포하지 않고 다른 개발자가 이 코드를 코드 저장소에서 다운로드했다 가정.
+             개발자는 npm install으로 필요한 노드 패키지를 설치
+             이때 노드는 똑같이 dependencies 속성에 있는 패키지들을 설치
+             그리고 --production 옵션이 없기 때문에 devDependencies 속성에 있는 패키지들도 추가로 설치하는 것
+    - 테스트 코드는 '테스트 수트'와 '테스트'로 구분
+       - 테스트 수트 (suite) : 테스트들을 모아놓은 하나의 환경
+       - 테스트 (test) : 실제 테스트를 수행하는 코드
+       - ex. mocha
+          테스트 수트 :  describe()
+          테스트 :       it()
+
+* Supertest : API테스트를 가능케해주는 노드 패키지
+    - supertest는 우리가 만든 익스프레스 서버를 구동한 뒤 HTTP 요청을 보내고 응답받는 구조.
+    - 이 응답을 should로 검증하면 된다.
+    - ex. npm i supertest --save-dev
+
+    - supertest 사용하려면, 서버 역할 하는 익스프레스 객체를 가져와야 함 -> supertest의 실행함수 파라미터로 사용하기 위해서.
+    - 따라서, app.js파일에서 만든 app변수(익스프레스 객체)를 외부 노출해 모듈로 만들기
+      - ex. module.exports = app;
+      테스트 파일에서 require('supertest'), require('app모듈 위치') 해서 슈퍼테스트 결합해 사용.
